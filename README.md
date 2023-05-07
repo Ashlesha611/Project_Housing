@@ -5,16 +5,17 @@ This project creates a Delta table in Pyspark and ingests data into it. It inclu
 a) Creating a job that creates a Delta table in Spark.
      	Table name = housing-dataset
  
-b) Ingesting data into Pyspark-based Delta Table
+b) Ingesting data into Pyspark-based Delta Table.
      The sink will be the delta table.
 
 
 The project also includes unit tests and integration tests to verify the functionality of the Spark jobs.
 
 ## Getting Started
-To use this project, you'll need access to a Pyspark cluster with the appropriate dependencies installed.
+Requirements-
+- need access to a Pyspark cluster with the appropriate dependencies installed.
 
-Prerequisites
+Prerequisites-
 Before running the Spark jobs, you'll need to install the necessary dependencies.
  
 ## Running the Spark Jobs
