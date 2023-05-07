@@ -50,7 +50,7 @@ class TestSparkJobs(unittest.TestCase):
 
         # Check that the table has the expected number of rows
         table = self.spark.table("housing-dataset")
-        expected_rows = len(data)
+        expected_rows = housing_df.count()
         actual_rows = table.count()
         self.assertEqual(actual_rows, expected_rows)
 
