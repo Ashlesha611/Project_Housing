@@ -25,7 +25,7 @@ class TestCreateDeltaTableJob(unittest.TestCase):
 
         # Check that the Delta table has the expected schema
        
-        table = self.spark.table("housing_dataset")
+        table = self.spark.table("housing-dataset")
         expected_columns = set(['Longitude','Latitude','housingMedianAge','totalRooms','totalbedrooms','Population','household','medianIncome','medianHouseValue'])
         actual_columns = set(table.columns)
         self.assertEqual(actual_columns, expected_columns)
