@@ -23,10 +23,10 @@ class TestSparkJobs(unittest.TestCase):
 
         
         # Check that the table exists and has the expected schema
-        table_exists = self.spark.catalog._jcatalog.tableExists("housing_dataset")
+        table_exists = self.spark.catalog._jcatalog.tableExists("housing-dataset")
         self.assertTrue(table_exists)
 
-        table = self.spark.table("housing_dataset")
+        table = self.spark.table("housing-dataset")
         expected_columns = set(['Longitude','Latitude','housingMedianAge','totalRooms','totalbedrooms','Population','household','medianIncome','medianHouseValue'])
         actual_columns = set(table.columns)
         self.assertEqual(actual_columns, expected_columns)
@@ -49,7 +49,7 @@ class TestSparkJobs(unittest.TestCase):
        housing_df.write.format("delta").mode("append").save(self.delta_table_path)
 
         # Check that the table has the expected number of rows
-        table = self.spark.table("housing_dataset")
+        table = self.spark.table("housing-dataset")
         expected_rows = len(data)
         actual_rows = table.count()
         self.assertEqual(actual_rows, expected_rows)
