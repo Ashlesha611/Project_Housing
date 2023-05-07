@@ -50,5 +50,5 @@ To run the integration tests, you'll need to have a Spark cluster with the appro
 You can run the integration tests using the pytest command:
 
 ```
-pytest test_integration.py
+pytest integration_test.py
 ```
