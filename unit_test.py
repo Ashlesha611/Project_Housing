@@ -19,7 +19,7 @@ class TestSparkJobs(unittest.TestCase):
 
 	  # Create the Delta table
 
-	dt1 = (DeltaTable.create(spark).tableName("housing-dataset").addColumn("longitude", dataType="DOUBLE", nullable=True).addColumn("latitude", dataType="DOUBLE",  nullable=True).addColumn("housingMedianAge", dataType="DOUBLE", nullable=True).addColumn("totalRooms", dataType="DOUBLE", nullable=True).addColumn("totalBedrooms", dataType="DOUBLE", nullable=True).addColumn("population", dataType="DOUBLE", nullable=True).addColumn("households", dataType="DOUBLE", nullable=True).addColumn("medianIncome", dataType="DOUBLE", nullable=True).addColumn("medianHouseValue",dataType="DOUBLE".execute())
+	dt1 = (DeltaTable.create(self.spark).tableName("housing-dataset").addColumn("longitude", dataType="DOUBLE", nullable=True).addColumn("latitude", dataType="DOUBLE",  nullable=True).addColumn("housingMedianAge", dataType="DOUBLE", nullable=True).addColumn("totalRooms", dataType="DOUBLE", nullable=True).addColumn("totalBedrooms", dataType="DOUBLE", nullable=True).addColumn("population", dataType="DOUBLE", nullable=True).addColumn("households", dataType="DOUBLE", nullable=True).addColumn("medianIncome", dataType="DOUBLE", nullable=True).addColumn("medianHouseValue",dataType="DOUBLE".execute())
 
         
         # Check that the table exists and has the expected schema
@@ -44,7 +44,7 @@ class TestSparkJobs(unittest.TestCase):
         Test that data can be ingested into the Delta table and that the table has the expected number of rows.
         """
         # Ingest data into the Delta table
-       housing_df = spark.read.format("csv").load("housing_data")
+       housing_df = self.spark.read.format("csv").load("housing_data")
 
        housing_df.write.format("delta").mode("append").save(self.delta_table_path)
 
