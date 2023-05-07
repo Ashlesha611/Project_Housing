@@ -9,8 +9,14 @@ class TestSparkJobs(unittest.TestCase):
         """
         Create a SparkSession and set the path for the Delta table.
         """
-        cls.spark = SparkSession.builder.appName("unit-tests").master("local[*]").getOrCreate()
-        cls.delta_table_path = "/FileStore/tables/delta_table"
+       
+	builder = ( 
+		pyspark.sql.SparkSession.builder.appName("Delta_Table")
+         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+         .config("spark.sql.catalog.spark_catalog","org.apache.spark.sql.delta.catalog.DeltaCatalog")
+                   )
+         cls.spark = configure_spark_with_delta_pip(builder).appName("unit-tests).getOrCreate()
+         cls.delta_table_path = "/FileStore/tables/delta_table"
 
     def test_create_delta_table(self):
         """
