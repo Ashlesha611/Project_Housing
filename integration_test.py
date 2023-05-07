@@ -6,7 +6,13 @@ class TestCreateDeltaTableJob(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Create a SparkSession object
-        cls.spark = SparkSession.builder.appName("test_create_delta_table_job").getOrCreate()
+        builder = (
+          pyspark.sql.SparkSession.builder.appName("Delta_Table")
+          .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+          .config("spark.sql.catalog.spark_catalog","org.apache.spark.sql.delta.catalog.DeltaCatalog")
+              )
+        cls.spark = configure_spark_with_delta_pip(builder).getOrCreate()
+
 
         # Define the path to the Delta table
         cls.delta_table_path = "/path/to/housing_dataset_delta"
